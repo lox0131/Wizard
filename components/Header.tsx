@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import {
+  Link,
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -12,13 +12,13 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
-  Stack,
-  Heading,
+  useColorMode,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { FaUtensils, FaCocktail } from 'react-icons/fa'
+import firebase from "../firebase/clientApp";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SearchBar from "./SearchBar";
+import { FaUtensils, FaCocktail, FaMoon, FaSun } from 'react-icons/fa'
 
 interface Props {
   toggle: string;
@@ -26,30 +26,32 @@ interface Props {
 }
 
 export default function Header({ toggle, setToggle }: Props) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+    const [ user ] = useAuthState(firebase.auth());
 
-  // create a button that has a different icon depending on the value of toggle
-  // if toggle === 'Drinks' than the icon is supposed to be a food icon else a drink icon
-  // also on click the icon is supposed to change the value of toggle with the setToggle function to 'Meals'
+    const color = useColorModeValue("grey.100", "grey.700");
+    const { toggleColorMode } = useColorMode();
+    const SwitchIcon = useColorModeValue(FaMoon, FaSun);
 
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4} minH="7vh">
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex
+          h={16}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          minH="7vh"
+        >
           <IconButton
             size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-
-          <IconButton
-            size={"md"}
-            icon={toggle === 'Drinks' ? <FaUtensils /> : <FaCocktail />}
+            icon={toggle === "Drinks" ? <FaUtensils /> : <FaCocktail />}
             aria-label={"Toggle Recipe Type"}
-            onClick={toggle === 'Drinks' ? () => setToggle('Meals') : () => setToggle('Drinks')}
+            onClick={
+              toggle === "Drinks"
+                ? () => setToggle("Meals")
+                : () => setToggle("Drinks")
+            }
           />
+          <SearchBar />
           <HStack spacing={8} alignItems={"center"}>
             <HStack
               as={"nav"}
@@ -58,6 +60,15 @@ export default function Header({ toggle, setToggle }: Props) {
             ></HStack>
           </HStack>
           <Flex alignItems={"center"}>
+            <IconButton
+              icon={<SwitchIcon />}
+              size={"md"}
+              fontSize="lg"
+              aria-label={"Toggle Color Type"}
+              onClick={toggleColorMode}
+              color={color}
+              marginRight="10px"
+            />
             <Menu>
               <MenuButton
                 as={Button}
@@ -66,23 +77,39 @@ export default function Header({ toggle, setToggle }: Props) {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar size={"sm"} src={""} />
+                {user && user.photoURL ? (
+                  <Avatar size={"sm"} src={`${user?.photoURL}`} />
+                ) : (
+                  <Avatar size={"sm"} src={""} />
+                )}
               </MenuButton>
               <MenuList>
-                <MenuItem>Saved Drinks</MenuItem>
-                <MenuDivider />
-                <MenuItem>Saved Food</MenuItem>
+                {user ? (
+                  <>
+                    <Link href="/drinks">
+                      <MenuItem>Saved Drinks</MenuItem>
+                    </Link>
+                    <MenuDivider />
+                    <Link href="/food">
+                      <MenuItem>Saved Food</MenuItem>
+                    </Link>{" "}
+                  </>
+                ) : (
+                  <> </>
+                )}
+                {!user ? (
+                  <Link href="/signin">
+                    <MenuItem>Log In</MenuItem>
+                  </Link>
+                ) : (
+                  <MenuItem onClick={() => firebase.auth().signOut()}>
+                    Log Out
+                  </MenuItem>
+                )}
               </MenuList>
             </Menu>
           </Flex>
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-            </Stack>
-          </Box>
-        ) : null}
       </Box>
     </>
   );

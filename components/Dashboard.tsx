@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
+import React from "react";
 
 interface Props {
   list: any;
@@ -7,16 +8,23 @@ interface Props {
 }
 
 export const Dashboard = ({ list, type }: Props) => {
-  console.log(list);
   return (
-    <Box minW="100vw" maxH="93vh" overflowY="scroll" padding="0px">
+    <Flex 
+    minW="100vw" 
+    maxH="93vh" 
+    overflowY="scroll" 
+    padding="0px"
+    flexWrap="wrap"
+    justifyContent="center"
+    >
       {
-        // list && list?.map((element: any) => <div key={uuidv4()}>{type === 'Drinks' ? element.strMeal : element.strDrink} </div> )
         list &&
           list?.map((element: any) => (
-            <div key={uuidv4()}>{element.strInstructions} </div>
+            <Box key={uuidv4()} boxSize="20rem" padding="6px" >
+              <Image src={type === 'Drinks' ? element.strDrinkThumb : element.strMealThumb} alt="drink photo" objectFit="cover" borderRadius="10px"/>
+            </Box>
           ))
       }
-    </Box>
+    </Flex>
   );
 };

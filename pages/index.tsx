@@ -26,11 +26,14 @@ export default function Home() {
         toggle={toggle}
         setToggle={setToggle}
       />
-      <div >
+      <div>
         {allMeals &&
         // toggle between components
         toggle === "Drinks" ? (
+          <>
+          {console.log(user)}
           <Dashboard list={allDrinks} type={toggle} />
+          </>
         ) : (
           <Dashboard list={allMeals} type={toggle} />
         )}
