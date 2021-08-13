@@ -1,6 +1,6 @@
 import { Heading, Flex, VStack } from "@chakra-ui/react";
-import  StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-import firebase from "../firebase/clientApp"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "../firebase/clientApp";
 
 //Configure Firebase UI
 const uiConfig = {
@@ -15,13 +15,15 @@ const uiConfig = {
 };
 
 export default function signin() {
-    return ( 
-        <Flex alignItems="center" justifyContent="center" minH="100vh">
-          <VStack>
-            <Heading>Sign In</Heading>
-            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-          </VStack>
-        </Flex>
-    )
+  return (
+    <Flex alignItems="center" justifyContent="center" minH="100vh">
+      <VStack>
+        <Heading>Sign In</Heading>
+        <StyledFirebaseAuth
+          uiConfig={uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
+      </VStack>
+    </Flex>
+  );
 }
-

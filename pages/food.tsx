@@ -1,14 +1,7 @@
-
-interface Props {
-    
-}
+interface Props {}
 
 const food = (props: Props) => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-export default food
+export default food;

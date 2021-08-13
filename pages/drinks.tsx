@@ -1,14 +1,7 @@
-
-interface Props {
-    
-}
+interface Props {}
 
 const drinks = (props: Props) => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-export default drinks
+export default drinks;

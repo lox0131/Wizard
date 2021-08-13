@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
   Link,
   Box,
@@ -18,19 +17,28 @@ import {
 import firebase from "../firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SearchBar from "./SearchBar";
-import { FaUtensils, FaCocktail, FaMoon, FaSun } from 'react-icons/fa'
+import { FaUtensils, FaCocktail, FaMoon, FaSun } from "react-icons/fa";
 
 interface Props {
   toggle: string;
   setToggle: Function;
+  search: string;
+  setSearch: Function;
+  filterElements: Function;
 }
 
-export default function Header({ toggle, setToggle }: Props) {
-    const [ user ] = useAuthState(firebase.auth());
+export default function Header({
+  toggle,
+  setToggle,
+  search,
+  setSearch,
+  filterElements,
+}: Props) {
+  const [user] = useAuthState(firebase.auth());
 
-    const color = useColorModeValue("grey.100", "grey.700");
-    const { toggleColorMode } = useColorMode();
-    const SwitchIcon = useColorModeValue(FaMoon, FaSun);
+  const color = useColorModeValue("grey.100", "grey.700");
+  const { toggleColorMode } = useColorMode();
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
 
   return (
     <>
@@ -51,7 +59,11 @@ export default function Header({ toggle, setToggle }: Props) {
                 : () => setToggle("Drinks")
             }
           />
-          <SearchBar />
+          <SearchBar
+            setSearch={setSearch}
+            search={search}
+            filterElements={filterElements}
+          />
           <HStack spacing={8} alignItems={"center"}>
             <HStack
               as={"nav"}
@@ -78,9 +90,9 @@ export default function Header({ toggle, setToggle }: Props) {
                 minW={0}
               >
                 {user && user.photoURL ? (
-                  <Avatar size={"sm"} src={`${user?.photoURL}`} />
+                  <Avatar size={"md"} src={`${user?.photoURL}`} />
                 ) : (
-                  <Avatar size={"sm"} src={""} />
+                  <Avatar size={"md"} src={""} />
                 )}
               </MenuButton>
               <MenuList>

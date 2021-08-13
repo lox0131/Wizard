@@ -1,9 +1,18 @@
 import { InputGroup, InputLeftAddon, Container, Input } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
-import React from "react";
+interface Props {
+  search: string;
+  setSearch: Function;
+  filterElements: Function;
+}
 
-const SearchBar = () => {
+const SearchBar = ({ search, setSearch, filterElements }: Props) => {
+  const handleChange = (event: any) => {
+    setSearch(event.target.value);
+    filterElements();
+  };
+
   return (
     <Container centerContent>
       <InputGroup size="lg">
@@ -11,6 +20,8 @@ const SearchBar = () => {
         <Input
           type="tel"
           placeholder="Search"
+          onChange={handleChange}
+          value={search}
         />
       </InputGroup>
     </Container>
