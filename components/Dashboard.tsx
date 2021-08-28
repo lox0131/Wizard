@@ -28,14 +28,20 @@ export const Dashboard = ({ list, type }: Props) => {
         flexDirection="column"
         w="100vw"
       >
-        <Flex padding="20px" flexDirection="column">
+        <Flex padding="10px" flexDirection="column">
           {type === "Drinks" ? (
-            <Heading color={colors} as="h2" size="3xl" paddingTop="20px">
+            <Heading color={colors} as="h2" size="3xl" paddingTop="10px">
               {" "}
               Find a Drink Recipe{" "}
             </Heading>
           ) : (
-            <Heading as="h2" size="3xl" paddingTop="20px" paddingBottom="20px">
+            <Heading
+              color={colors}
+              as="h2"
+              size="3xl"
+              paddingTop="10px"
+              paddingBottom="10px"
+            >
               {" "}
               Find a Food recipes{" "}
             </Heading>
