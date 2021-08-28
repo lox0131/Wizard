@@ -7,7 +7,8 @@ import {
   Image,
   Button,
   useDisclosure,
-  useMediaQuery
+  useMediaQuery,
+  useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export const Dashboard = ({ list, type }: Props) => {
+  const colors = useColorModeValue("#2d3436", "#bdd4e7");
   return (
     <>
       <Flex
@@ -28,7 +30,7 @@ export const Dashboard = ({ list, type }: Props) => {
       >
         <Flex padding="20px" flexDirection="column">
           {type === "Drinks" ? (
-            <Heading as="h2" size="3xl" paddingTop="20px">
+            <Heading color={colors} as="h2" size="3xl" paddingTop="20px">
               {" "}
               Find a Drink Recipe{" "}
             </Heading>
@@ -45,7 +47,7 @@ export const Dashboard = ({ list, type }: Props) => {
               effect="blur"
               src={
                 type === "Drinks"
-                  ? "/adam-jaime-dmkmrNptMpw-unsplash.jpg"
+                  ? "/emily-andreeva-L4Ndz5Fx_Tk-unsplash (1).jpg"
                   : "/syd-wachs-epqNIYI6S7E-unsplash.jpg"
               }
               alt="Cover img"
@@ -58,9 +60,7 @@ export const Dashboard = ({ list, type }: Props) => {
             justifyContent="center"
             borderWidth="1px"
             flexDirection="column"
-          >
-            
-          </Flex>
+          ></Flex>
         </Flex>
         <Flex flexDirection="column">
           {type === "Drinks" ? (
