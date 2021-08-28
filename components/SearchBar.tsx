@@ -15,9 +15,13 @@ const SearchBar = ({ search, setSearch, filterElements }: Props) => {
 
   return (
     <Container centerContent>
-      <InputGroup size="lg">
-        <InputLeftAddon children={<SearchIcon color="gray.500" />} />
+      <InputGroup size="sm">
+        <InputLeftAddon
+          borderRadius="10px"
+          children={<SearchIcon color="gray.500" />}
+        />
         <Input
+          borderRadius="10px"
           type="tel"
           placeholder="Search"
           onChange={handleChange}

@@ -24,10 +24,12 @@
     "react-firebase-hooks": "^3.0.4",
     "react-firebaseui": "^5.0.2",
     "react-icons": "^4.2.0",
+    "react-lazy-load-image-component": "^1.5.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.16",
+    "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/uuid": "^8.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",

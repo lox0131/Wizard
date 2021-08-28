@@ -42,12 +42,12 @@ export default function Header({
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4} minH="7vh">
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4} minH="4vh">
         <Flex
           h={16}
           alignItems={"center"}
           justifyContent={"space-between"}
-          minH="7vh"
+          minH="4vh"
         >
           <IconButton
             size={"md"}

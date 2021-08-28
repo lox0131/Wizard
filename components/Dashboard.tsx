@@ -1,10 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
-import { Box, 
-  Heading, 
-  Flex, 
-  Image, 
-  Button, 
-  useDisclosure,} from "@chakra-ui/react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  Box,
+  Heading,
+  Flex,
+  Image,
+  Button,
+  useDisclosure,
+  useMediaQuery
+} from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -15,35 +19,50 @@ interface Props {
 export const Dashboard = ({ list, type }: Props) => {
   return (
     <>
-      <Box minW="100vw" maxH="93vh" overflowY="scroll">
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-        >
+      <Flex
+        overflowY="scroll"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        w="100vw"
+      >
+        <Flex padding="20px" flexDirection="column">
           {type === "Drinks" ? (
-            <Heading as="h2" size="3xl" paddingTop="20px" paddingBottom="20px">
+            <Heading as="h2" size="3xl" paddingTop="20px">
               {" "}
-              Drinks recipes{" "}
+              Find a Drink Recipe{" "}
             </Heading>
           ) : (
             <Heading as="h2" size="3xl" paddingTop="20px" paddingBottom="20px">
               {" "}
-              Food recipes{" "}
+              Find a Food recipes{" "}
             </Heading>
           )}
-          <Image
-            src={
-              type === "Drinks"
-                ? "/kobby-mendez-xBFTjrMIC0c-unsplash.jpg"
-                : "/syd-wachs-epqNIYI6S7E-unsplash.jpg"
-            }
-            alt="Cover img"
-            borderRadius="30px"
-            maxH="50vh"
-            objectFit="cover"
-            paddingBottom="20px"
-          />
+        </Flex>
+        <Flex w="100%" h="100%" padding="20px">
+          <Flex w="50%" h="50%">
+            <LazyLoadImage
+              effect="blur"
+              src={
+                type === "Drinks"
+                  ? "/adam-jaime-dmkmrNptMpw-unsplash.jpg"
+                  : "/syd-wachs-epqNIYI6S7E-unsplash.jpg"
+              }
+              alt="Cover img"
+            />
+          </Flex>
+          <Flex
+            w="50%"
+            h="100%"
+            alignItems="center"
+            justifyContent="center"
+            borderWidth="1px"
+            flexDirection="column"
+          >
+            
+          </Flex>
+        </Flex>
+        <Flex flexDirection="column">
           {type === "Drinks" ? (
             <Heading as="h2" size="2xl" paddingTop="20px" paddingBottom="20px">
               {" "}
@@ -56,7 +75,12 @@ export const Dashboard = ({ list, type }: Props) => {
             </Heading>
           )}
         </Flex>
-        <Flex padding="0px" flexWrap="wrap" justifyContent="center">
+        <Flex
+          padding="0px"
+          flexWrap="wrap"
+          justifyContent="center"
+          objectFit="cover"
+        >
           {list &&
             list?.map((element: any) => (
               <>
@@ -66,21 +90,20 @@ export const Dashboard = ({ list, type }: Props) => {
                   padding="10px"
                   variant="ghost"
                 >
-                  <Image
+                  <LazyLoadImage
+                    effect="blur"
                     src={
                       type === "Drinks"
                         ? element.strDrinkThumb
                         : element.strMealThumb
                     }
                     alt="drink photo"
-                    objectFit="cover"
-                    borderRadius="10px"
                   />
                 </Button>
               </>
             ))}
         </Flex>
-      </Box>
+      </Flex>
     </>
   );
 };
