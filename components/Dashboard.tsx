@@ -22,17 +22,18 @@ export const Dashboard = ({ list, type }: Props) => {
   return (
     <>
       <Flex
-        overflowY="scroll"
+        overflowY="hidden"
+        
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        w="100vw"
+        w="99vw"
       >
         <Flex padding="10px" flexDirection="column">
           {type === "Drinks" ? (
             <Heading color={colors} as="h2" size="3xl" paddingTop="10px">
               {" "}
-              Find a Drink Recipe{" "}
+              Drink Recipes{" "}
             </Heading>
           ) : (
             <Heading
@@ -43,7 +44,7 @@ export const Dashboard = ({ list, type }: Props) => {
               paddingBottom="10px"
             >
               {" "}
-              Find a Food recipes{" "}
+              Food recipes{" "}
             </Heading>
           )}
         </Flex>
