@@ -4,7 +4,6 @@ import {
   Box,
   Heading,
   Flex,
-  Image,
   Button,
   useDisclosure,
   useMediaQuery,
@@ -18,18 +17,18 @@ interface Props {
 }
 
 export const Dashboard = ({ list, type }: Props) => {
+  const [isLargerThan] = useMediaQuery("(min-width: 500px)");
   const colors = useColorModeValue("#2d3436", "#bdd4e7");
   return (
     <>
       <Flex
         overflowY="hidden"
-        
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
         w="99vw"
       >
-        <Flex padding="10px" flexDirection="column">
+        <Flex padding="10px" >
           {type === "Drinks" ? (
             <Heading color={colors} as="h2" size="3xl" paddingTop="10px">
               {" "}
@@ -48,8 +47,8 @@ export const Dashboard = ({ list, type }: Props) => {
             </Heading>
           )}
         </Flex>
-        <Flex w="100%" h="100%" padding="20px">
-          <Flex w="50%" h="50%">
+        <Flex w="100%" h="100%" padding="20px" flexDirection={isLargerThan ? "row" : "column"}>
+          <Flex w={isLargerThan ? "100%" : ""} h="50%">
             <LazyLoadImage
               effect="blur"
               src={
@@ -61,7 +60,7 @@ export const Dashboard = ({ list, type }: Props) => {
             />
           </Flex>
           <Flex
-            w="50%"
+            w={isLargerThan ? "100%" : ""}
             h="100%"
             alignItems="center"
             justifyContent="center"

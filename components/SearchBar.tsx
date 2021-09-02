@@ -1,4 +1,4 @@
-import { InputGroup, InputLeftAddon, Container, Input } from "@chakra-ui/react";
+import { InputGroup, InputLeftAddon, Container, Input, useColorModeValue } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 interface Props {
@@ -15,7 +15,7 @@ const SearchBar = ({ search, setSearch, filterElements }: Props) => {
 
   return (
     <Container centerContent>
-      <InputGroup size="sm">
+      <InputGroup size="sm" bg={useColorModeValue("gray.300","gray.800")} borderRadius="10px">
         <InputLeftAddon
           borderRadius="10px"
           children={<SearchIcon color="gray.500" />}
