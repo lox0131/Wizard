@@ -22,15 +22,13 @@ export const Dashboard = ({ list, type }: Props) => {
   return (
     <>
       <Flex
-        overflowY="scroll"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        w="100vw"
       >
         <Flex padding="10px" flexDirection="column">
           {type === "Drinks" ? (
-            <Heading color={colors} as="h2" size="3xl" paddingTop="10px">
+            <Heading color={colors} as="h2" paddingTop="10px">
               {" "}
               Find a Drink Recipe{" "}
             </Heading>
