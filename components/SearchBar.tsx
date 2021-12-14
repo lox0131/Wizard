@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { InputGroup, InputLeftAddon, Container, Input } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
@@ -23,7 +24,7 @@ const SearchBar = ({ search, setSearch, filterElements }: Props) => {
         <Input
           borderRadius="10px"
           type="tel"
-          placeholder="Search"
+          placeholder="Find a recipe..."
           onChange={handleChange}
           value={search}
         />

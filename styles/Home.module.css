@@ -44,6 +44,13 @@
   text-decoration: underline;
 }
 
+@media only screen and (max-width: 800px) {
+    .box {
+      flex-direction: column;
+      -webkit-flex-direction: column;
+    }
+  }
+
 .title {
   margin: 0;
   line-height: 1.15;

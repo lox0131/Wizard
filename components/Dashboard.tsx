@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import styles from "../styles/Home.module.css";
 import {
   Box,
   Heading,
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export const Dashboard = ({ list, type }: Props) => {
+  const isDesktop = useMediaQuery("(max-width: 768px)");
   const colors = useColorModeValue("#2d3436", "#bdd4e7");
   return (
     <>
@@ -36,17 +38,16 @@ export const Dashboard = ({ list, type }: Props) => {
             <Heading
               color={colors}
               as="h2"
-              size="3xl"
               paddingTop="10px"
               paddingBottom="10px"
             >
               {" "}
-              Find a Food recipes{" "}
+              Find a Food Recipe{" "}
             </Heading>
           )}
         </Flex>
-        <Flex w="100%" h="100%" padding="20px">
-          <Flex w="50%" h="50%">
+        <Flex w="100%" h="100%" padding="20px" className={styles.box} >
+          <Flex w={isDesktop ? "100%" : "50%"} h="50%">
             <LazyLoadImage
               effect="blur"
               src={
@@ -58,7 +59,7 @@ export const Dashboard = ({ list, type }: Props) => {
             />
           </Flex>
           <Flex
-            w="50%"
+            w={isDesktop ? "100%" : "50%"}
             h="100%"
             alignItems="center"
             justifyContent="center"
@@ -90,7 +91,7 @@ export const Dashboard = ({ list, type }: Props) => {
               <>
                 <Button
                   key={uuidv4()}
-                  boxSize="20rem"
+                  boxSize="18rem"
                   padding="10px"
                   variant="ghost"
                 >

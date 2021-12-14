@@ -1,5 +1,4 @@
 export interface DrinkI {
-
   "idDrink": string,
   "strDrink": string,
   "strDrinkAlternate"?: string,
