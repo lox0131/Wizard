@@ -56,7 +56,8 @@ export const Dashboard = ({ list, type }: Props) => {
                   : "/syd-wachs-epqNIYI6S7E-unsplash.jpg"
               }
               alt="Cover img"
-            />
+              style={{ borderRadius: "10apx" }}
+              />
           </Flex>
           <Flex
             w={isDesktop ? "100%" : "50%"}
@@ -64,8 +65,9 @@ export const Dashboard = ({ list, type }: Props) => {
             alignItems="center"
             justifyContent="center"
             borderWidth="1px"
+            borderRadius="10px"
             flexDirection="column"
-          ></Flex>
+          > fdbjhbfdghj </Flex>
         </Flex>
         <Flex flexDirection="column">
           {type === "Drinks" ? (
@@ -87,13 +89,16 @@ export const Dashboard = ({ list, type }: Props) => {
           objectFit="cover"
         >
           {list &&
-            list?.map((element: any) => (
-              <>
+            list?.map((element: any, i: number) => (
+              <Flex key={i} flexDirection="column" padding="5px">
                 <Button
                   key={uuidv4()}
                   boxSize="18rem"
                   padding="10px"
+                  paddingBottom="10px"
+                  paddingTop="5px"
                   variant="ghost"
+                  flexDirection="column"
                 >
                   <LazyLoadImage
                     effect="blur"
@@ -103,9 +108,12 @@ export const Dashboard = ({ list, type }: Props) => {
                         : element.strMealThumb
                     }
                     alt="drink photo"
+                    style={{ padding: "10px" , borderRadius: "15px" }}
                   />
-                </Button>
-              </>
+               <p>{ type === "Drinks"
+                        ? element.strDrink
+                        : element.strMeal}</p> </Button>
+              </Flex>
             ))}
         </Flex>
       </Flex>
