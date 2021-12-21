@@ -67,7 +67,9 @@ export const Dashboard = ({ list, type }: Props) => {
             borderWidth="1px"
             borderRadius="10px"
             flexDirection="column"
-          > fdbjhbfdghj </Flex>
+          > 
+          <Heading size='md' >Filters</Heading>
+           </Flex>
         </Flex>
         <Flex flexDirection="column">
           {type === "Drinks" ? (
@@ -93,7 +95,7 @@ export const Dashboard = ({ list, type }: Props) => {
               <Flex key={i} flexDirection="column" padding="5px">
                 <Button
                   key={uuidv4()}
-                  boxSize="18rem"
+                  boxSize="20rem"
                   padding="10px"
                   paddingBottom="10px"
                   paddingTop="5px"
